@@ -5,6 +5,7 @@ new Vue({
     isFilterOpen: false,
     userDropDownOpen: false,
     isDarkModeOn: false,
+    categories: ["Popular Games", "Recently Reviewed", "Top Rated"],
     gameTypes: [
       "Action",
       "Sports",

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Box</title>
+    <link href="./favicon.ico" rel="icon" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="./css/app.css">
+    <style>
+        .card-container::-webkit-scrollbar {
+        height: 12px;
+        }
+
+       .scrollable-sidebar::-webkit-scrollbar{
+            display: none;
+        }
+        
+        .card-container::-webkit-scrollbar-thumb {
+        background-image: linear-gradient(to left top, #2e314b, #565a71, #828798, #b2b6c1, #e5e7eb);
+        border-radius: 20px;
+        }
+
+        html.dark .card-container::-webkit-scrollbar-thumb {
+        background-image: linear-gradient(to right, #1f2937, #423b63, #83427d, #ca4278, #ff5555);
+        border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+ <div id="app" class="app">
+    <button @click="toggleDarkMode" id="switchTheme" class="darkmode-btn" href="#"> 
+        <svg v-if="!isDarkModeOn" class="w-6 h-6 text-gray-800" id="moon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+        
+        <svg v-else class="w-6 h-6 text-yellow-400" id="sun" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path></svg>
+    </button>
+      <!-- Header area -->
+            <header class="header">
+                    <div class="px-4 py-3 flex justify-between xl:w-72 xl:bg-gray-900 xl:justify-center">
+                        <div>
+                           <a href="index.html"><img src="./imgs/logo.png" class="h-16 w-auto" alt="Avatar Icon"></a>
+                        </div>
+                       <div class="flex sm:hidden">
+                           <button  @click="toggleMainMenu" type="button" class="focus:outline-none px-2 focus:text-white focus:shadow-none">
+                               <svg class="w-6 h-6 text-gray-500 hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                 <path v-if="!isMainMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                                 <path v-else stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                             </svg>
+                           </button>
+                       </div>
+                     </div>
+                       <nav :class="{'hidden': !isMainMenuOpen, 'block':isMainMenuOpen}" class="tracking-wider font-semibold sm:flex sm:items-center sm:pr-4 xl:flex-1 xl:justify-between">
+                        <div class="hidden xl:block relative ml-4 max-w-sm w-full">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3">
+                                <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                            </div>
+                            <input class="input-web" type="text" placeholder="Search by keywords">
+                        </div>
+                       <div class="sm:flex sm:items-center">
+                            <div class="nav-links">
+                                <a class="nav-link-item" href="#">Discover</a>
+                                <a class="nav-link-item mt-1 sm:mt-0" href="#">Recently Release</a>
+                                <a class="nav-link-item mt-1 sm:mt-0" href="#">Coming Soon</a>
+                            </div>
+                            <div class="relative px-5 py-5 sm:py-0 sm:ml-4 sm:px-0 md:relative">
+                                <div class="flex items-center" @click="toggleUserDropDown">
+                                    <img class="profile-img" src="./imgs/me.jpg"  alt="">
+                                    <span class="ml-4 text-gray-200 sm:hidden">Mark Lester</span>
+                                </div>
+                                <div class="profile-dropDown" :class="userDropDownOpen ? 'sm:block' : 'sm:hidden'">
+                                    <a class="mt-3 profile-link" href="#">Portfolio</a>
+                                    <a class="mt-3 profile-link" target="_blank" href="https://www.facebook.com/marklesterpyong10"><i class="fab fa-github"></i> Github</a>
+                                </div>
+                            </div>
+                       </div>
+                       </nav>
+               </header>
+    <!-- End of Header area -->
+  
+           <div class="xl:flex-1 xl:flex xl:overflow-y-auto">
+                <main class="xl:flex-1 xl:overflow-x-hidden">
+                <div class="shadow-md mb-10 relative">
+                    <div>
+                        <img src="./imgs/banner.jpg" class="object-cover h-96 w-full" alt="Banner">
+                    </div>
+                    <div class="absolute inset-0 bg-gray-800 opacity-80"></div>
+                </div>
+                            <!-- card -->
+                            <div class="px-3 mb-12 py-3 container mx-auto sm:w-4/5 md:flex md:flex-row md:w-full md:-mt-60">
+                                <div class="relative pb-5/6 md:pb-0 md:w-2/5">
+                                   <a href="show.html">
+                                    <img class="absolute w-full inset-0 h-full rounded-lg shadow-md object-cover" src="./imgs/demo.jpg" alt="">
+                                   </a>
+                                </div>
+                                <div class="relative px-4 -mt-16 md:mt-0 md:w-3/5 md:pl-2 md:px-0">
+                                    <div class="bg-white w-full rounded-lg px-4 py-4 shadow-lg dark:bg-gray-800 transition-all duration-500 ease-in-out">
+                                        <div class="flex items-center">
+                                            <span class="pill">Trending</span>
+                                            <div class="ml-2 text-xs text-gray-600 dark:text-gray-300 font-semibold uppercase tracking-wide">12 Want &bull; 12k Playing &bull; 4 Played</div>
+                                        </div>
+                                        <h1 class="mt-3 text-gray-800 dark:text-white font-semibold text-2xl">Fortnite
+                                        <small><a href="#" class=" text-red-500 text-xs">Happy Ray Games</a></small>
+                                        </h1>
+                                        <div class="mb-2 text-gray-600 dark:text-gray-200">
+                                            <small>January 4, 1970</small>
+                                        </div>
+                                        <div class=" text-gray-600 dark:text-gray-200">
+                                            <small class="dark:text-blue-400 font-semibold text-gray-900">Genres:</small>
+                                            <small>Indie, Role-playing (RPG)</small>
+                                        </div>
+                                        <div class=" text-gray-600 dark:text-gray-200">
+                                            <small class="dark:text-green-400 font-semibold text-gray-900">Platforms:</small>
+                                            <small>Android |</small>
+                                            <small>Indie, Role-playing (RPG)</small>
+                                        </div>
+                                        <hr class="mt-3">
+                                        <p class="p-3 text-sm text-gray-800 dark:text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate quibusdam cumque autem, consequatur optio eos voluptas illo maiores aliquid et repellat eius nesciunt placeat suscipit ratione inventore atque obcaecati ullam, dignissimos nostrum distinctio natus? Asperiores, quod? Quaerat nemo quis saepe. Nihil minus corporis id unde praesentium, saepe eaque dolorum repudiandae!
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse sequi architecto tempore delectus amet, voluptatem debitis maxime perferendis 
+                                        </p>
+                                        <div class="text-sm px-3 text-gray-600 dark:text-gray-200 flex items-center">
+                                            <svg v-for="n in 5" class="w-6 h-6 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                            <span class="ml-2">58 Reviews</span>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+
+                    <div class="py-12 px-2 mt-12 container mx-auto border-t">
+                            <h1 class="title-text mb-12">Gallery
+                                <span class="block w-12 h-1 rounded-md bg-green-400"></span>
+                            </h1>
+                           
+                                <div class=" dark:bg-gray-800 bg-gray-300 rounded-lg mx-auto min-w-xl px-4 py-6 grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-6 xl:grid-cols-4 2xl:grid-cols-5">
+                                <!-- card -->
+                                    <div v-for="n in 10" class="w-full">
+                                    <div class="relative pb-5/6">
+                                       <a href="show.html">
+                                        <img class="absolute inset-0 h-full rounded-lg shadow-md object-cover" src="./imgs/demo.jpg" alt="">
+                                       </a>
+                                    </div>
+                                </div>
+                                    <!-- end of card -->
+                            </div>   
+                    </div>
+                    
+                <footer class="footer">
+                    <div>
+                        <h1 class="text-xl tracking-wide font-semibold">Mark Lester Morta</h1>
+                        <div class="text-2xl mt-3 text-gray-500">
+                            <a class="mr-2 hover:text-gray-900" target="_blank" href="https://github.com/MarkLester10"><i class="fab fa-github"></i></a>
+                            <a class="mr-2 hover:text-blue-400" target="_blank" href="https://www.facebook.com/marklesterpyong10"><i class="fab fa-facebook"></i></a>
+                            <a class="mr-2 hover:text-blue-300" target="_blank" href="https://twitter.com/pyoooooooooong"><i class="fab fa-twitter"></i></a>
+                            <a class="mr-2 hover:text-red-400" target="_blank" href="https://www.instagram.com/pyongits/"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+               </footer>
+                </main>
+           </div>
+ </div>
+ <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+   <script src="./js/app.js"></script>
+</body>
+</html>

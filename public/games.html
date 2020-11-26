@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Box</title>
+    <title>Popular Games</title>
     <link href="./favicon.ico" rel="icon" type="image/x-icon" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -40,7 +40,7 @@
             <header class="header">
                     <div class="px-4 py-3 flex justify-between xl:w-72 xl:bg-gray-900 xl:justify-center">
                         <div>
-                           <img src="./imgs/logo.png" class="h-16 w-auto" alt="Avatar Icon">
+                           <a href="index.html"><img src="./imgs/logo.png" class="h-16 w-auto" alt="Avatar Icon"></a>
                         </div>
                        <div class="flex sm:hidden">
                            <button  @click="toggleMainMenu" type="button" class="focus:outline-none px-2 focus:text-white focus:shadow-none">
@@ -79,106 +79,21 @@
                </header>
     <!-- End of Header area -->
   
-           <div class="xl:flex-1 xl:flex xl:overflow-y-auto">
-            <section class="bg-gray-800 xl:border-gray-500 xl:border-r dark:bg-gray-800 xl:w-72">
-                    <div class="flex justify-between px-4 py-3 xl:hidden">
-                        <div class="relative mr-4 max-w-md w-full">
-                            <div class="absolute inset-y-0 left-0 flex items-center pl-3">
-                                <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                            </div>
-                            <input class="bg-gray-900 text-white rounded-lg pl-10 pr-4 py-2 focus:outline-none focus:bg-white focus:text-gray-900 w-full block" type="text" placeholder="Search by keywords">
-                        </div>
-                       <button @click="toggleFilter" class="filter-btn" :class="{'hover:bg-red-500 bg-gray-900 shadow':isFilterOpen,'bg-dark-900':!isFilterOpen}">
-                        <svg class="w-6 h-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path></svg>
-                           <span class="text-white font-medium ml-1">Filters</span>
-                        </button>
-                    </div>
-                    <form action="#" :class="{'hidden':!isFilterOpen, 'block':isFilterOpen}" class="xl:block xl:h-full xl:flex xl:flex-col xl:justify-between text-white">
-                        <div class="scrollable-sidebar lg:flex xl:block xl:overflow-y-scroll">
-                            <!-- First Section -->
-                            <div class="section">
-                                <div class="flex flex-wrap -mx-2">
-                                        <label class="block w-1/2 px-2 sm:w-1/4 lg:w-1/2">
-                                            <span class="text-sm font-semibold text-gray-500">Genres</span>
-                                            <select class="select-form">
-                                                <option></option>
-                                                <option>Horror</option>
-                                            </select>
-                                        </label>
-                                        <label class="block w-1/2 px-2 sm:w-1/4 lg:w-1/2">
-                                            <span class="text-sm font-semibold text-gray-500">Company</span>
-                                            <select class="select-form">
-                                                <option></option>
-                                                <option class="text-sm">EA Games</option>
-                                                <option class="text-sm">Rockstar</option>
-                                                <option class="text-sm">Moontoon</option>
-                                            </select>
-                                        </label>
-                                        <label class="mt-4 block w-full px-2 sm:w-1/2 lg:w-full sm:mt-0">
-                                            <span class="text-sm font-semibold text-gray-500">Ratings</span>
-                                            <select class="select-form">
-                                                <option></option>
-                                                <option class="text-sm">Highest</option>
-                                                <option class="text-sm">Average</option>
-                                                <option class="text-sm">Low</option>
-                                            </select>
-                                        </label>
-                                </div>
-                            </div>
-                            <!-- End of first section -->
-                
-                            <!-- Second Section -->
-                            <div class="section">
-                                <span class="block text-sm font-semibold text-gray-500">Game Type</span>
-                                <div class="sm:flex sm:-mx-2 lg:block lg:mx-0">
-                                    <label v-for="game in gameTypes" class="mt-3 flex items-center sm:px-2 sm:w-auto lg:w-full lg:px-0">
-                                        <input type="radio" class="form-radio" name="gameType" value="horror">
-                                        <span class="ml-2 text-white">{{ game }}</span>
-                                    </label>
-                                </div>
-                            </div>
-                            <!-- end Section -->
-                
-                            <!-- third Section -->
-                            <div class="section sm:pb-6">
-                                <span class="block text-sm font-semibold text-gray-500">Some option</span>
-                                <div class="sm:flex sm:-mx-2 sm:flex-wrap">
-                                    <label v-for="game in gameTypes" class="mt-3 flex items-center sm:px-2 sm:w-auto lg:w-1/2 xl:w-full">
-                                        <input type="checkbox" class="form-checkbox rounded-lg"  name="gameType" value="horror">
-                                        <span class="ml-2 text-white">{{ game }}</span>
-                                    </label>
-                                </div>
-                            </div>
-                            <!-- end third Section -->
-                        </div>
-                
-                        <div class="border-t border-gray-900 px-4 py-4 sm:text-right">
-                            <button type="button" class="primary-btn">Update Results</button>
-                        </div>
-                    </form>
-                </section>
-                  
+           <div class="xl:flex-1 xl:flex xl:overflow-y-auto">     
                 <main class="xl:flex-1 xl:overflow-x-hidden">
                 <div class="shadow-md mb-10">
                     <div>
                         <img src="./imgs/banner.jpg" class="object-cover h-96 w-full" alt="Banner">
                     </div>
                 </div>
-                <div v-for="category in categories" class="mb-16">
-                    <div class="px-4 flex flex-col md:flex-row md:justify-between">
-                        <div>
-                        <h1 class="title-text">{{ category }}</h1>
+                <div class="mb-16">
+                        <div class="px-4">
+                        <h1 class="title-text">Popular Games</h1>
                         <p class="text-gray-600 dark:text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, reiciendis?</p>
                         </div>
-                      <div class="flex items-center text-blue-400 mt-3 md:-mt-8">
-                        <a href="games.html" class="mr-3">View All</a>
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                      </div>
-                    </div>
-                        <div class="card-container mt-6 sm:overflow-x-auto">
-                            <div class="px-4 sm:inline-flex sm:pb-8">
+                            <div class="card-container min-w-xl px-3 py-6 grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-6 xl:grid-cols-4 2xl:grid-cols-5">
                             <!-- card -->
-                            <div v-for="n in 10" class="mb-10 sm:mb-0 sm:w-80 sm:flex-shrink-0 sm:px-2">
+                                <div v-for="n in 10" class="w-full">
                                 <div class="relative pb-5/6">
                                    <a href="show.html">
                                     <img class="absolute inset-0 h-full rounded-lg shadow-md object-cover" src="./imgs/demo.jpg" alt="">
@@ -202,8 +117,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- end of card -->
-                            </div>
+                                <!-- end of card -->
                         </div>   
                 </div>
                 <footer class="footer">
